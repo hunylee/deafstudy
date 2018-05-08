@@ -6,3 +6,5 @@ MAC 설치방법
     mongod
     # dbpath 지정
     mongod --path <path>
+
+    참조링크 : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
