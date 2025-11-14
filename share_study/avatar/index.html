@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Gemma – 실사 수화 아바타 연구실</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__text">
+        <p class="tag">avatar lab</p>
+        <h1>Sign Gemma로 실사 수화를 바로 구현하세요</h1>
+        <p>
+          일상적인 한국 수화를 빠르게 연습할 수 있도록 표정·속도·카메라 앵글을
+          즉시 조절해 주는 Sign Gemma 기반 아바타 툴킷입니다.
+        </p>
+        <div class="hero__actions">
+          <button class="primary" id="startPractice">바로 연습하기</button>
+          <button class="ghost" id="openGuide">간단 가이드</button>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__halo"></div>
+        <div class="hero__device">
+          <div class="device__frame">
+            <div class="device__avatar">
+              <div class="device__head"></div>
+              <div class="device__body"></div>
+            </div>
+            <p class="device__cta">실시간 수화 미리보기</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="stage" id="practiceStage">
+        <div class="stage__visual">
+          <div class="sign-gemma" id="signGemma">
+            <div class="avatar__head"></div>
+            <div class="avatar__body"></div>
+            <div class="avatar__arm left"></div>
+            <div class="avatar__arm right"></div>
+            <div class="avatar__hand left"></div>
+            <div class="avatar__hand right"></div>
+          </div>
+          <div class="stage__ambient"></div>
+          <p class="stage__status" id="stageStatus">기본 모드</p>
+        </div>
+        <div class="stage__controls">
+          <div class="control">
+            <label for="phraseSelect">표현할 일상 문장</label>
+            <select id="phraseSelect"></select>
+          </div>
+          <div class="control">
+            <label for="tempoRange">수화 속도</label>
+            <input type="range" id="tempoRange" min="0.6" max="1.4" step="0.1" value="1" />
+            <small>느긋하게 0.6x ~ 빠르게 1.4x</small>
+          </div>
+          <div class="control">
+            <label>표정 & 앵글</label>
+            <div class="chip-row">
+              <button class="chip" data-mood="bright">밝게</button>
+              <button class="chip" data-mood="calm">차분하게</button>
+              <button class="chip" data-mood="focus">집중</button>
+            </div>
+          </div>
+          <button class="primary full" id="renderBtn">아바타에 적용</button>
+        </div>
+        <div class="stage__script">
+          <h2>모션 스크립트</h2>
+          <p id="phraseDescription">원하는 문장을 선택해 주세요.</p>
+          <ol id="phraseSteps"></ol>
+        </div>
+      </section>
+
+      <section class="library">
+        <header>
+          <div>
+            <p class="tag">quick kit</p>
+            <h2>자주 쓰는 생활 수화</h2>
+            <p>
+              학교·카페·회의 등 바로 활용할 수 있는 여러 개의 추천 문장을 준비했습니다.
+              각 카드를 클릭하면 스크립트가 자동으로 불러와집니다.
+            </p>
+          </div>
+          <button class="ghost" id="downloadKit">Script 내보내기</button>
+        </header>
+        <div class="library__grid" id="phraseCards"></div>
+      </section>
+
+      <section class="workflow">
+        <div class="workflow__card">
+          <h3>1. Sign Gemma 세팅</h3>
+          <p>
+            카메라 시야, 조명, 의상 톤을 체크해 실사 아바타와 동일한 환경을 맞춥니다.
+            얼굴 인식과 손 랜드마크 캘리브레이션을 1분 이내로 완료하세요.
+          </p>
+        </div>
+        <div class="workflow__card">
+          <h3>2. 문장 불러오기</h3>
+          <p>
+            프리셋 혹은 직접 작성한 한국 수화 문장을 업로드하면 AI가 프레임 단위로
+            모션을 매핑합니다. 속도와 표정은 실시간으로 조절 가능합니다.
+          </p>
+        </div>
+        <div class="workflow__card">
+          <h3>3. 녹화 & 공유</h3>
+          <p>
+            WebRTC 화면을 바로 녹화하거나, Unreal/Blender 파이프라인으로 보낼 수 있는
+            FBX/JSON 포맷을 동시에 출력합니다.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Sign Gemma Avatar Toolkit · 실사 수화 연구 네트워크</p>
+      <p class="muted">최신 모델 업데이트 알림을 이메일로 받아보세요.</p>
+    </footer>
+
+    <div class="guide" id="quickGuide" aria-hidden="true">
+      <div class="guide__panel">
+        <button class="guide__close" id="closeGuide" aria-label="닫기">×</button>
+        <h2>빠른 시작 가이드</h2>
+        <ol>
+          <li>웹캠을 연결하고 Sign Gemma 드라이버를 실행합니다.</li>
+          <li>아래 문장을 골라 아바타에 적용합니다.</li>
+          <li>표정·속도를 조절하며 자연스러운 수화를 확인합니다.</li>
+        </ol>
+      </div>
+    </div>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
